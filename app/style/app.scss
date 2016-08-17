@@ -1,0 +1,17 @@
+$dashboardItemHeight: 180px;
+
+.dashboard{
+	.dashboard-item{
+		background-color: #eee;
+		border-radius: 15px;
+		border: 5px solid white;
+		height: $dashboardItemHeight;
+		padding-top: 15px;
+		.vertical-center{
+			height: $dashboardItemHeight;
+			line-height: $dashboardItemHeight;
+			white-space: nowrap;
+		}
+	}
+}
+

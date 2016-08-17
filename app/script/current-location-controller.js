@@ -7,6 +7,5 @@
     function currentLocationController(locationService) {
         var viewModel = this;
         viewModel.currentLocation = locationService;
-        console.log(viewModel.currentLocation);
     }
 })();

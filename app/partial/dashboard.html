@@ -1,3 +1,17 @@
-<div class="jumbotron text-center">
-    <h1>The Dashboard Page</h1> 
+<div class="dashboard">
+	<div class="col-xs-12 col-sm-4 dashboard-item" ng-repeat="item in ctrl.items track by $index">
+		<form>
+			<div class="form-group">
+				<input type="text" class="form-control" ng-model="item.tempLocation" ng-model-options="{debounce: 500}" ng-change="item.updateLocation()" placeholder="City Name">
+			</div>
+		</form>
+		<p>{{item.getLocationName();}}</p>
+		<p>{{item.getTemperature();}} {{item.getConditionsText();}}</p>
+	</div>
+	<div class="col-xs-12 col-sm-4 dashboard-item text-center">
+		<div class="vertical-center">
+			<button class="btn btn-primary" ng-click="ctrl.newItem();"><i class="glyphicon glyphicon-plus"></i> Add New Widget</button>
+		</div>
+	</div>
 </div>
+<!-- /.dashboard -->

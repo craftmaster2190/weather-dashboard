@@ -27,11 +27,12 @@
             return weatherObject;
 
             function successCallback(response) {
-                console.log(response);
+                console.log(response.data);
                 weatherObject.location = response.data.query.results.channel.location;
                 weatherObject.condition = {};
                 weatherObject.condition.temp = response.data.query.results.channel.item.condition.temp;
                 weatherObject.condition.unit = response.data.query.results.channel.units.temperature;
+                weatherObject.condition.text = response.data.query.results.channel.item.condition.text;
             }
 
             function errorCallback(error){

@@ -1,8 +1,4 @@
 <div class="jumbotron text-center">
-	{{ctrl.currentLocation.weather}}
-	<h1>{{ctrl.currentLocation.weather.location}}</h1>
-	<p>{{ctrl.currentLocation.weather.condition}}</p>
+	<h1>{{ctrl.getLocationName();}}</h1>
+	<p>{{ctrl.getTemperature();}} {{ctrl.getConditionsText();}}</p>
 </div>
-<button type="button" class="btn btn-primary" ng-model="singleModel" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
-Single Toggle
-</button>

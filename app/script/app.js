@@ -6,7 +6,7 @@
 
     function config($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/home');
-        var states = ['home', 'dashboard', 'forecast'];
+        var states = ['home', 'dashboard'];
         for (var i = states.length - 1; i >= 0; i--) {
             $stateProvider
                 .state(states[i], {

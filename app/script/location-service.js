@@ -19,7 +19,8 @@
             location.error = false;
             if (!location.manual) {
                 location.manual = false;
-                location.cityName = 'salt lake city, ut';
+                //TODO Add Geolocation
+                location.cityName = 'Salt Lake City, UT';
             }
             location.weather = weatherService.get(location.cityName);
             return location;
