@@ -38,7 +38,6 @@
             $http.get('//ipinfo.io').then(successCallback);
 
             function successCallback(response){
-                console.log(response.data);
                 var cityName = [];
                 if(response.data.city)
                     cityName.push(response.data.city);

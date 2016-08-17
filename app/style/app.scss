@@ -12,6 +12,12 @@ $dashboardItemHeight: 180px;
 			line-height: $dashboardItemHeight;
 			white-space: nowrap;
 		}
+
+		.forecast-button{
+			position: absolute;
+			right: 15px;
+			bottom: 15px;
+		}
 	}
 }
 

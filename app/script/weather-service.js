@@ -19,15 +19,12 @@
             var query = escape('select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + location + '")'),
                 url = "http://query.yahooapis.com/v1/public/yql?q=" + query + "&format=json";
 
-            console.log(url);
-
             $http.get(url).then(successCallback, errorCallback).finally(function() {
                 weatherObject._loading = false;
             });
             return weatherObject;
 
             function successCallback(response) {
-                console.log(response.data);
                 try {
                     weatherObject.location = response.data.query.results.channel.location;
                     weatherObject.condition = {};

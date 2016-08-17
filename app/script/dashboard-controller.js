@@ -2,12 +2,13 @@
     console.log('Loading dashboardController...');
     angular.module('app').controller('dashboardController', dashboardController);
 
-    dashboardController.$inject = ['weatherService'];
+    dashboardController.$inject = ['$uibModal', 'weatherService'];
 
-    function dashboardController(weatherService) {
+    function dashboardController($uibModal, weatherService) {
         var viewModel = this;
         viewModel.newItem = newItem;
         viewModel.removeItem = removeItem;
+        viewModel.openModal = openModal;
 
         init();
 
@@ -22,6 +23,15 @@
 
         function removeItem(index) {
             viewModel.items.splice(index, 1);
+        }
+
+        function openModal(item){
+        	$uibModal.open({
+        		templateUrl: 'partial/dashboard-modal.html',
+        		resolve: {
+        			item: item
+        		}
+        	});
         }
 
         item.prototype.updateLocation = item_updateLocation;
