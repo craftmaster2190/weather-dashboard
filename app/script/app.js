@@ -1,6 +1,6 @@
 (function() {
 	console.log('Loading app...');
-    angular.module('app', ['ui.bootstrap', 'ui.router', 'ngGeolocation']);
+    angular.module('app', ['ui.bootstrap', 'ui.router']);
     angular.module('app').config(config);
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 

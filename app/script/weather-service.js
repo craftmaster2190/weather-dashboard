@@ -36,7 +36,7 @@
             }
 
             function errorCallback(error){
-                console.log(error);
+                console.log("Error getting weather: " + error);
             }
         }
     }

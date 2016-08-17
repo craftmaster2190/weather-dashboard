@@ -8,8 +8,16 @@
         var viewModel = this;
         viewModel.newItem = newItem;
 
-        viewModel.items = [];
-        newItem();
+        init();
+
+        function init(){
+        	viewModel.items = [];
+        	newItem();
+        }
+
+        function newItem() {
+            viewModel.items.push(new item());
+        }
 
         item.prototype.updateLocation = item_updateLocation;
         item.prototype.getLocationName = item_getLocationName;
@@ -23,7 +31,7 @@
 
         function item_updateLocation() {
             var thisItem = this;
-            thisItem.currentLocation.weather = weatherService.get(thisItem.tempLocation)
+            thisItem.currentLocation.weather = weatherService.get(thisItem.tempLocation);
         }
 
         function item_getLocationName() {
@@ -67,9 +75,5 @@
         }
 
         //Todo add weather icons
-
-        function newItem() {
-            viewModel.items.push(new item());
-        }
     }
 })();
