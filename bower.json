@@ -20,12 +20,16 @@
     "angular-bootstrap": "^2.0.2",
     "angular": "^1.5.8",
     "font-awesome": "^4.6.3",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "angular-ui-router": "^0.3.1",
+    "ngGeolocation": "^0.0.8",
+    "weather-icons": "https://github.com/erikflowers/weather-icons"
   },
   "overrides": {
     "bootstrap": {
       "main": [
-        "./dist/css/bootstrap.css"
+        "./dist/css/bootstrap.css",
+        "./dist/js/bootstrap.js"
       ]
     },
     "font-awesome": {

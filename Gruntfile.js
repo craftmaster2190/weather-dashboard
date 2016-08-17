@@ -43,13 +43,15 @@ module.exports = function(grunt) {
             app: {
                 src: [
                     '<%= app %>/index.html'
-                ],
-                exclude: ['jquery']
+                ]
             }
         },
 
         injector: {
             app: {
+                options: {
+                    ignorePath: '<%= app %>'
+                },
                 files: {
                     '<%= app %>/index.html': ['<%= app %>/script/**/*.js', '<%= app %>/style/**/*.css'],
                 }
@@ -59,21 +61,29 @@ module.exports = function(grunt) {
         connect: {
             app: {
                 options: {
-                    base: "<%= app %>",
+                    port: 9100,
+                    base: '<%= app %>/',
                     open: true,
-                    liereload: true
+                    livereload: true,
+                    hostname: '127.0.0.1'
                 }
             }
         },
 
         watch: {
-            options: {
-                livereload: true
-            },
-            
             sass: {
-                files: '<%= app %>/scss/**/*.scss',
+                files: '<%= app %>/style/**/*.scss',
                 tasks: ['sass', 'postcss']
+            },
+            js: {
+            	files: '<%= app %>/script/**/*.js',
+                tasks: ['injector']
+            }, 
+            livereload: {
+                files: ['<%= app %>/**/*.html', '<%= app %>/script/**/*.js', '<%= app %>/style/**/*.css', '<%= app %>/image/**/*.{jpg,gif,svg,jpeg,png}'],
+                options: {
+                    livereload: true
+                }
             }
         }
     });
