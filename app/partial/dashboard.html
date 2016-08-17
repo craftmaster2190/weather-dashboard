@@ -1,8 +1,11 @@
 <div class="dashboard">
 	<div class="col-xs-12 col-sm-4 dashboard-item" ng-repeat="item in ctrl.items track by $index">
 		<form>
-			<div class="form-group">
+			<div class="form-group input-group">
 				<input type="text" class="form-control" ng-model="item.tempLocation" ng-model-options="{debounce: 500}" ng-change="item.updateLocation()" placeholder="City Name">
+				<span class="input-group-btn">
+					<button class="btn btn-danger" ng-click="ctrl.removeItem($index);" type="button"><i class="glyphicon glyphicon-remove"></i></button>
+				</span>
 			</div>
 		</form>
 		<h3>{{item.getLocationName();}}</h3>

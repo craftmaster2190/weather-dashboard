@@ -7,6 +7,7 @@
     function dashboardController(weatherService) {
         var viewModel = this;
         viewModel.newItem = newItem;
+        viewModel.removeItem = removeItem;
 
         init();
 
@@ -17,6 +18,10 @@
 
         function newItem() {
             viewModel.items.push(new item());
+        }
+
+        function removeItem(index) {
+            viewModel.items.splice(index, 1);
         }
 
         item.prototype.updateLocation = item_updateLocation;
