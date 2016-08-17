@@ -28,14 +28,18 @@
 
             function successCallback(response) {
                 console.log(response.data);
-                weatherObject.location = response.data.query.results.channel.location;
-                weatherObject.condition = {};
-                weatherObject.condition.temp = response.data.query.results.channel.item.condition.temp;
-                weatherObject.condition.unit = response.data.query.results.channel.units.temperature;
-                weatherObject.condition.text = response.data.query.results.channel.item.condition.text;
+                try {
+                    weatherObject.location = response.data.query.results.channel.location;
+                    weatherObject.condition = {};
+                    weatherObject.condition.temp = response.data.query.results.channel.item.condition.temp;
+                    weatherObject.condition.unit = response.data.query.results.channel.units.temperature;
+                    weatherObject.condition.text = response.data.query.results.channel.item.condition.text;
+                } catch (e) {
+                    errorCallback(e);
+                }
             }
 
-            function errorCallback(error){
+            function errorCallback(error) {
                 console.log("Error getting weather: " + error);
             }
         }

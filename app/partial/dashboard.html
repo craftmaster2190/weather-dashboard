@@ -5,7 +5,7 @@
 				<input type="text" class="form-control" ng-model="item.tempLocation" ng-model-options="{debounce: 500}" ng-change="item.updateLocation()" placeholder="City Name">
 			</div>
 		</form>
-		<p>{{item.getLocationName();}}</p>
+		<h3>{{item.getLocationName();}}</h3>
 		<p>{{item.getTemperature();}} {{item.getConditionsText();}}</p>
 	</div>
 	<div class="col-xs-12 col-sm-4 dashboard-item text-center">
