@@ -6,7 +6,7 @@
     function locationService($http, weatherService, $cookies, $geolocation, Logger) {
         factory.prototype.refresh = refresh;
         factory.prototype.setLocation = setLocation;
-        factory.prototype.getGetIPLocation = getGetIPLocation;
+        factory.prototype.initAutomaticGetLocation = initAutomaticGetLocation;
 
         Logger.trace("Starting new locationService...");
 
@@ -22,20 +22,19 @@
             if (!that.manual) {
                 that.manual = false;
                 that.cityName = 'Loading...';
-                this.getGetIPLocation();
+                this.initAutomaticGetLocation();
             }
             that.weather = weatherService.get(that.cityName);
             return that;
         }
 
         function setLocation(location) {
-            Logger.info("Your location is", location);
             this.manual = true;
             this.cityName = location;
             this.refresh();
         }
 
-        function getGetIPLocation() {
+        function initAutomaticGetLocation() {
             var that = this;
             var cookieCityName = $cookies.get('cityName');
             if (cookieCityName) {

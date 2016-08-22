@@ -9,15 +9,38 @@
         viewModel.removeItem = removeItem;
         viewModel.openModal = openModal;
 
+        item.prototype.updateLocation = item_updateLocation;
+        item.prototype.getLocationName = item_getLocationName;
+        item.prototype.getTemperature = item_getTemperature;
+        item.prototype.getConditionsText = item_getConditionsText;
+
         init();
 
         function init(){
+            Logger.trace("Loading dashboardController...");
         	viewModel.items = [];
-        	newItem();
+            var locationArray = $cookies.getObject('locations');
+            Logger.trace('Got locationArray from cookie.', locationArray);
+            if(angular.isArray(locationArray)){
+                angular.forEach(locationArray, function(value){
+                    newItem(value);
+                });
+            }
+            if(viewModel.items.length === 0){
+            	newItem();
+            }
         }
 
-        function newItem() {
-            viewModel.items.push(new item());
+        function saveLocationsCookie(){
+            var cookieArray = [];
+            angular.forEach(viewModel.items, function(value, key){
+                cookieArray.push(value.tempLocation);
+            });
+            $cookies.putObject('locations', cookieArray);
+        }
+
+        function newItem(location) {
+            viewModel.items.push(new item(location));
         }
 
         function removeItem(index) {
@@ -33,18 +56,20 @@
         	});
         }
 
-        item.prototype.updateLocation = item_updateLocation;
-        item.prototype.getLocationName = item_getLocationName;
-        item.prototype.getTemperature = item_getTemperature;
-        item.prototype.getConditionsText = item_getConditionsText;
-
-        function item() {
+        function item(tempLocation) {
             var thisItem = this;
             thisItem.currentLocation = {};
+            if(angular.isString(tempLocation)){
+                thisItem.tempLocation = tempLocation;
+                thisItem.updateLocation(true);
+            }
         }
 
-        function item_updateLocation() {
+        function item_updateLocation(ignoreCookieUpdate) {
             var thisItem = this;
+            if(!ignoreCookieUpdate){
+                saveLocationsCookie();
+            }
             thisItem.currentLocation.weather = weatherService.get(thisItem.tempLocation);
         }
 

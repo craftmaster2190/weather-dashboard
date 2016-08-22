@@ -29,8 +29,21 @@
         return new Date(new Date().getTime() + hours * 60 * 60 * 1000);
     }
 
-    configureLogger.$inject = ['Logger'];
-    function configureLogger(Logger){
-        Logger.setVerbosity(Logger.Level.DEBUG);
+    configureLogger.$inject = ['Logger', '$location'];
+    function configureLogger(Logger, $location){
+        var logging = $location.search().logging;
+        if(canBeNumber(logging)){
+            Logger.setVerbosity(parseInt(logging));
+        }else if(angular.isString(logging)){
+            logging = logging.toUpperCase();
+            Logger.setVerbosity(Logger.Level[logging]);
+        }else{
+            Logger.setVerbosity(Logger.Level.OFF);
+        }
+    }
+
+    function canBeNumber(stringOfNumber){
+        /* Note the type juggling */
+        return stringOfNumber - 0 == stringOfNumber;
     }
 })();
