@@ -1,10 +1,9 @@
 (function() {
-    console.log('Loading dashboardController...');
     angular.module('app').controller('dashboardController', dashboardController);
 
-    dashboardController.$inject = ['$uibModal', 'weatherService'];
+    dashboardController.$inject = ['Logger', '$cookies', '$uibModal', 'weatherService'];
 
-    function dashboardController($uibModal, weatherService) {
+    function dashboardController(Logger, $cookies, $uibModal, weatherService) {
         var viewModel = this;
         viewModel.newItem = newItem;
         viewModel.removeItem = removeItem;

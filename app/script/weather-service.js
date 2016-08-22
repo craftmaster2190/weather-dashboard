@@ -1,11 +1,12 @@
 (function() {
-    console.log('Loading weatherService...');
     angular.module('app').factory('weatherService', weatherService);
 
-    weatherService.$inject = ['$http'];
+    weatherService.$inject = ['$http', 'Logger'];
 
-    function weatherService($http) {
+    function weatherService($http, Logger) {
         factory.prototype.get = get;
+
+        Logger.trace("Starting new weatherService...");
 
         return new factory();
 
@@ -17,7 +18,9 @@
             var weatherObject = {};
             weatherObject._loading = true;
             var query = escape('select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + location + '")'),
-                url = "http://query.yahooapis.com/v1/public/yql?q=" + query + "&format=json";
+                url = "//query.yahooapis.com/v1/public/yql?q=" + query + "&format=json";
+            
+            Logger.debug("Checking weather at location", location);
 
             $http.get(url).then(successCallback, errorCallback).finally(function() {
                 weatherObject._loading = false;
@@ -25,6 +28,7 @@
             return weatherObject;
 
             function successCallback(response) {
+                Logger.trace("Received a weather response", response);
                 try {
                     weatherObject.location = response.data.query.results.channel.location;
                     weatherObject.condition = {};
@@ -37,7 +41,7 @@
             }
 
             function errorCallback(error) {
-                console.log("Error getting weather: " + error);
+                Logger.error("Error getting weather", error);
             }
         }
     }

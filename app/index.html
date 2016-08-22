@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Weather Dashboard</title>
 		<!-- bower:css -->
 		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
 		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -45,6 +48,8 @@
 		<div class="container">
 			<!-- Injected Contented -->
 			<div ui-view></div>
+
+			<logger></logger>
 		</div>
 		<!--/.container -->
 		
@@ -55,14 +60,17 @@
 		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 		<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 		<script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
+		<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+		<script src="bower_components/moment/moment.js"></script>
 		<!-- endbower -->
 		<!-- injector:js -->
 		<script src="/script/app.js"></script>
 		<script src="/script/current-location-controller.js"></script>
 		<script src="/script/dashboard-controller.js"></script>
-		<script src="/script/dashboard-item-controller.js"></script>
 		<script src="/script/home-controller.js"></script>
 		<script src="/script/location-service.js"></script>
+		<script src="/script/logger-component.js"></script>
+		<script src="/script/logger-service.js"></script>
 		<script src="/script/nav-controller.js"></script>
 		<script src="/script/weather-service.js"></script>
 		<!-- endinjector -->

@@ -1,5 +1,4 @@
 (function(){
-	console.log('Loading homeController...');
 	angular.module('app').controller('homeController', homeController);
 
 	homeController.$inject = ['locationService'];

@@ -1,13 +1,14 @@
 (function() {
-    console.log('Loading locationService...');
     angular.module('app').factory('locationService', locationService);
 
-    locationService.$inject = ['$http', 'weatherService'];
+    locationService.$inject = ['$http', 'weatherService', '$cookies', '$geolocation', "Logger"];
 
-    function locationService($http, weatherService) {
+    function locationService($http, weatherService, $cookies, $geolocation, Logger) {
         factory.prototype.refresh = refresh;
         factory.prototype.setLocation = setLocation;
         factory.prototype.getGetIPLocation = getGetIPLocation;
+
+        Logger.trace("Starting new locationService...");
 
         return new factory();
 
@@ -16,36 +17,67 @@
         }
 
         function refresh() {
-            var location = this;
-            location.error = false;
-            if (!location.manual) {
-                location.manual = false;
-                location.cityName = 'Loading...';
+            var that = this;
+            that.error = false;
+            if (!that.manual) {
+                that.manual = false;
+                that.cityName = 'Loading...';
                 this.getGetIPLocation();
             }
-            location.weather = weatherService.get(location.cityName);
-            return location;
+            that.weather = weatherService.get(that.cityName);
+            return that;
         }
 
         function setLocation(location) {
+            Logger.info("Your location is", location);
             this.manual = true;
             this.cityName = location;
             this.refresh();
         }
 
-        function getGetIPLocation(){
-            var location = this;
-            $http.get('//ipinfo.io').then(successCallback);
+        function getGetIPLocation() {
+            var that = this;
+            var cookieCityName = $cookies.get('cityName');
+            if (cookieCityName) {
+                that.setLocation(cookieCityName);
+                Logger.debug("Got cityname(" + cookieCityName + ") from cookie.");
+            } else {
+                tryGeolocation();
+                tryIPLocation();
+            }
 
-            function successCallback(response){
+            function tryGeolocation() {
+                Logger.debug("Trying geolocation for global position");
+                $geolocation.getCurrentPosition({
+                    timeout: 0
+                }).then(function(position) {
+                    setPosition(position);
+                }, function(error){
+                    Logger.error('Unable to get geolocation.', error);
+                });
+            }
+
+            function setPosition(position){
+                Logger.debug("Got position(" + position + ") from geolocation");
+            }
+
+            function tryIPLocation() {
+                Logger.debug("Querying ipinfo.io for city name...");
+                $http.get('//ipinfo.io').then(ipinfoSuccessCallback);
+            }
+
+            function ipinfoSuccessCallback(response) {
                 var cityName = [];
-                if(response.data.city)
+                if (response.data.city)
                     cityName.push(response.data.city);
-                if(response.data.region)
+                if (response.data.region)
                     cityName.push(response.data.region);
-                if(response.data.country)
+                if (response.data.country)
                     cityName.push(response.data.country);
-                location.setLocation(cityName.join(', '));
+                cityName = cityName.join(', ');
+                Logger.debug("Got cityname(" + cookieCityName + ") from ipinfo.io");
+                $cookies.put('cityName', cityName);
+                that.setLocation(cityName);
             }
         }
     }

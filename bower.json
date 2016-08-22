@@ -23,7 +23,9 @@
     "bootstrap": "^3.3.7",
     "angular-ui-router": "^0.3.1",
     "ngGeolocation": "^0.0.8",
-    "weather-icons": "https://github.com/erikflowers/weather-icons"
+    "weather-icons": "https://github.com/erikflowers/weather-icons",
+    "angular-cookies": "^1.5.8",
+    "moment": "^2.14.1"
   },
   "overrides": {
     "bootstrap": {

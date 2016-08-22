@@ -6,6 +6,7 @@
   "devDependencies": {
     "autoprefixer": "^6.4.0",
     "bower": "^1.7.9",
+    "chai": "^3.5.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-concat": "^1.0.1",
@@ -15,10 +16,15 @@
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-injector": "^1.0.1",
+    "grunt-karma": "^2.0.0",
     "grunt-postcss": "^0.8.0",
     "grunt-sass": "^1.2.1",
     "grunt-wiredep": "^3.0.1",
-    "load-grunt-tasks": "^3.5.2"
+    "karma": "^1.2.0",
+    "load-grunt-tasks": "^3.5.2",
+    "mocha": "^3.0.2",
+    "phantomjs": "^2.1.7",
+    "sinon": "^1.17.5"
   },
   "scripts": {
     "postinstall": "bower install && grunt"

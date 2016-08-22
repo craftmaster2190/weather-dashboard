@@ -65,7 +65,7 @@ module.exports = function(grunt) {
                     base: '<%= app %>/',
                     open: true,
                     livereload: true,
-                    hostname: '127.0.0.1'
+                    hostname: '*'
                 }
             }
         },
@@ -77,8 +77,12 @@ module.exports = function(grunt) {
             },
             js: {
             	files: '<%= app %>/script/**/*.js',
-                tasks: ['injector']
+                tasks: ['jshint', 'injector']
             }, 
+            bower: {
+                files: '<%= app %>/bower_components/*',
+                tasks: ['wiredep']
+            },
             livereload: {
                 files: ['<%= app %>/**/*.html', '<%= app %>/script/**/*.js', '<%= app %>/style/**/*.css', '<%= app %>/image/**/*.{jpg,gif,svg,jpeg,png}'],
                 options: {
