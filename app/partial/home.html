@@ -1,4 +1,4 @@
-<div class="jumbotron text-center">
+<div class="home jumbotron text-center">
 	<h1>{{ctrl.getLocationName();}}</h1>
-	<p>{{ctrl.getTemperature();}} {{ctrl.getConditionsText();}}</p>
+	<h2><weather-icon condition="ctrl.getConditionsText();"></weather-icon> {{ctrl.getTemperature();}}</h2>
 </div>

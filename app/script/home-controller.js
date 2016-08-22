@@ -27,8 +27,9 @@
         function getTemperature() {
             try {
                 var string = [];
-                if (viewModel.currentLocation.weather.condition.temp)
-                    string.push(viewModel.currentLocation.weather.condition.temp);
+                if (viewModel.currentLocation.weather.condition.temp){
+                    string.push(viewModel.currentLocation.weather.condition.temp + String.fromCharCode(176));
+                }
                 if (viewModel.currentLocation.weather.condition.unit)
                     string.push(viewModel.currentLocation.weather.condition.unit);
                 return string.join(' ');

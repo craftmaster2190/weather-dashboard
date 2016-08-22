@@ -16,8 +16,26 @@ $dashboardItemHeight: 180px;
 		.forecast-button{
 			position: absolute;
 			right: 15px;
-			bottom: 15px;
+			bottom: 10px;
 		}
+
+		.conditions{
+			position: absolute;
+			left: 15px;
+			bottom: 10px;
+
+			weather-icon{
+				.wi{
+					font-size: 150%;
+				}
+			}
+		}
+	}
+}
+
+.home{
+	.wi{
+		font-size: 200%;
 	}
 }
 

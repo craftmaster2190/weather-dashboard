@@ -41,7 +41,7 @@
             }
 
             function errorCallback(error) {
-                Logger.error("Error getting weather", error);
+                Logger.error("Error getting weather for location(" + location + ")", error);
             }
         }
     }

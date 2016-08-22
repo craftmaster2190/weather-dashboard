@@ -9,9 +9,9 @@
 			</div>
 		</form>
 		<h3>{{item.getLocationName();}}</h3>
-		<p>{{item.getTemperature();}} {{item.getConditionsText();}}
+		<span class="conditions"><weather-icon condition="item.getConditionsText();"></weather-icon> {{item.getTemperature();}}</span>
 			<button class="forecast-button btn btn-default" ng-show="!!item.getTemperature();" ng-click="ctrl.openModal(item);">Forecast <i class="glyphicon glyphicon-new-window"></i></button>
-		</p>
+		
 	</div>
 	<div class="col-xs-12 col-sm-4 dashboard-item text-center">
 		<div class="vertical-center">

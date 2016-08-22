@@ -94,7 +94,7 @@
             try {
                 var string = [];
                 if (thisItem.currentLocation.weather.condition.temp)
-                    string.push(thisItem.currentLocation.weather.condition.temp);
+                    string.push(thisItem.currentLocation.weather.condition.temp + String.fromCharCode(176));
                 if (thisItem.currentLocation.weather.condition.unit)
                     string.push(thisItem.currentLocation.weather.condition.unit);
                 return string.join(' ');
